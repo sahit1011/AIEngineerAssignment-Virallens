@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10
+        with:
+          version: "0.12.8"
+      - run: uv sync --frozen
+      - run: uv run ruff check .
+      - run: uv run ruff format --check .
+      - run: uv run pyright
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10
+        with:
+          version: "0.12.8"
+      - uses: actions/cache@v6
+        with:
+          path: .cache/fastembed
+          key: fastembed-bge-small-en-v1.5
+      - run: uv sync --frozen
+      - run: uv run python main.py ingest
+      - run: uv run pytest
+
+  test-research:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10
+        with:
+          version: "0.12.8"
+      - uses: actions/cache@v6
+        with:
+          path: .cache/fastembed
+          key: fastembed-bge-small-en-v1.5
+      - run: uv sync --frozen --extra research
+      - run: uv run python main.py ingest
+      - run: uv run pytest

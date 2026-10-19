@@ -16,17 +16,13 @@ import re
 from collections import Counter
 from dataclasses import dataclass
 
-# Running heads are at most 3 lines deep (Macquarie: case name, "MOAB PARTNERS, L. P.", "Opinion of
-# the Court"); ECF stamps and page numbers sit within the last 2 lines.
+# Running heads reach 3 lines deep; ECF stamps and page numbers sit in the last 2.
 EDGE_WINDOW = 3
-# A normalised edge line is furniture when it recurs on at least this many pages of one document.
-# Measured on data/: Macquarie (11 pages) has running heads on 5+ pages against a threshold of 3,
-# and the most frequent non-furniture edge line in any document recurs on 5 of 55 pages against a
-# threshold of 14.
+# An edge line recurring on at least this many pages, and this share of a filing's pages, is
+# furniture. Margins measured on data/: docs/DESIGN.md.
 FURNITURE_MIN_PAGES = 3
 FURNITURE_MIN_SHARE = 0.25
-# Share of dot-leader lines above which a page is a table of contents or authorities.
-# Measured on data/: index pages in the two briefs are 45-75% leader lines; body pages have none.
+# Pages with at least this share of dot-leader lines are tables of contents or authorities.
 INDEX_PAGE_MIN_SHARE = 0.3
 
 _RULE_LINE = re.compile(r"_{3,}")

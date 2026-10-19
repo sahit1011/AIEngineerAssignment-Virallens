@@ -23,21 +23,17 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 from virallens.common.cleaning import Line
 
-# ~1000 characters is ~200-250 word-piece tokens of legal English, under the 256-token input
-# limit of all-MiniLM-L6-v2 (the Q2 baseline) and well under bge-small's 512 (Q1 retrieval).
+# Measured on data/: a median of 175 word-piece tokens and at most 400, within bge-small's 512-token
+# input (Q1); 17 of 370 chunks exceed all-MiniLM-L6-v2's 256 and are truncated in Q2.
 CHUNK_SIZE = 1000
-# One to two sentences, so a sentence cut at a chunk boundary appears whole in one neighbour.
+# One to two sentences, so a sentence cut at a boundary appears whole in one of the two chunks.
 CHUNK_OVERLAP = 150
 SEPARATORS = ["\n\n", ". ", "; ", ", ", " ", ""]
-# Page 1 of every filing is a caption, cover or syllabus whose ALL-CAPS party and counsel lines are
-# not headings; it opens the document's first section under this name.
+# Page 1 (caption, cover or syllabus) is one section: its ALL-CAPS party and counsel lines are not
+# headings.
 FRONT_MATTER_SECTION = "Front matter"
-# A "heading" followed by less body text than this is folded, heading text included, into the
-# preceding section. Measured on data/ before folding: name-only signature lines and caption
-# fragments ("MEGAN BARBERO" / "General Counsel") carry <= 58 characters and parent headings whose
-# body is all subsections carry 0; the shortest real sections (the briefs' CONCLUSIONs) carry
-# 80-81. Longer signature and address blocks (67-126) overlap that range, so no threshold separates
-# them and they remain small sections of their own.
+# A "heading" with less body text than this is a signature or caption fragment, folded (text and
+# all) into the preceding section. Threshold measured on data/: docs/DESIGN.md.
 MIN_SECTION_CHARS = 64
 # Justified body lines run close to the document's median width; a line ending a sentence and
 # shorter than this share of the median ends a paragraph.
@@ -45,16 +41,11 @@ PARAGRAPH_END_MAX_WIDTH = 0.8
 HEADING_MAX_CHARS = 120
 HEADING_MIN_LETTERS = 4
 HEADING_MIN_UPPER_SHARE = 0.9
-# Lettered point headings follow Chicago-style Title Case, which leaves function words lowercase
-# ("C. Claims under Rule 10b-5(a) and (c)"), so they are scored on the share of capitalised words
-# of 4+ letters. Measured on data/ over lettered lines that open a paragraph: real headings score
-# >= 0.67, sentence-case openings ("D. Unlike the Ninth Circuit, some courts") <= 0.60. The margin
-# is narrow; a miss only mislabels a section, it never drops text.
+# Lettered point headings use Title Case that leaves function words lowercase ("C. Claims under
+# Rule 10b-5(a) and (c)"), so they are scored on the share of capitalised words of 4+ letters.
+# Threshold measured on data/: docs/DESIGN.md.
 TITLE_WORD_MIN_LETTERS = 4
 LETTERED_TITLE_MIN_SHARE = 0.65
-# Numbered point headings in data/ capitalise every word ("1. The Ninth Circuit's Approach Ignores
-# The Actual"), which separates them from proper-noun-heavy numbered paragraphs ("1. Under the
-# Securities Act of 1933").
 
 _ROMAN_HEADING = re.compile(r"[IVX]+(?:\.\s+[A-Z].*)?")
 _NUMBERED_PARAGRAPH = re.compile(r"\d{1,3}\. [A-Z]")
@@ -73,8 +64,20 @@ class Chunk:
     page_start: int
     page_end: int
 
+    @property
+    def index(self) -> int:
+        """Position of the chunk within its filing: the ``::NNNN`` suffix of its id."""
+        return int(self.chunk_id.rsplit("::", 1)[1])
 
-@dataclass(frozen=True)
+    @property
+    def pages(self) -> str:
+        """``p. 11`` or ``pp. 11-12``."""
+        if self.page_start == self.page_end:
+            return f"p. {self.page_start}"
+        return f"pp. {self.page_start}-{self.page_end}"
+
+
+@dataclass
 class _Section:
     path: list[tuple[int, str]]  # (level, heading), outermost first
     heading_lines: list[Line]
@@ -143,6 +146,8 @@ def _heading_level(text: str, opens_paragraph: bool) -> int | None:
         return None
     if match["letter"]:
         return 1 if _is_lettered_title(match["rest"]) else None
+    # Numbered point headings capitalise every word ("1. The Ninth Circuit's Approach Ignores"),
+    # unlike numbered paragraphs that start with proper nouns ("1. Under the Securities Act").
     words = _TITLE_WORD.findall(match["rest"])
     return 2 if all(word[0].isupper() for word in words) else None
 

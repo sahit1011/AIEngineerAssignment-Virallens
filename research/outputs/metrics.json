@@ -1,0 +1,942 @@
+{
+  "split": {
+    "train": 279,
+    "test": 72
+  },
+  "rows": [
+    {
+      "model": "baseline",
+      "seed": 0,
+      "labels": "topic",
+      "scores": {
+        "silhouette": 0.19052627682685852,
+        "ari": 0.29467455045853713,
+        "nmi": 0.4728571671921256,
+        "knn_purity": 0.9555555555555556,
+        "similarity_gap": 0.14423102140426636
+      }
+    },
+    {
+      "model": "baseline",
+      "seed": 0,
+      "labels": "doc_type",
+      "scores": {
+        "silhouette": 0.1886313259601593,
+        "ari": 0.2784871647594221,
+        "nmi": 0.4721625146916674,
+        "knn_purity": 0.9388888888888889,
+        "similarity_gap": 0.14856010675430298
+      }
+    },
+    {
+      "model": "baseline",
+      "seed": 0,
+      "labels": "doc",
+      "scores": {
+        "silhouette": 0.11434265971183777,
+        "ari": 0.3423693342550342,
+        "nmi": 0.5425372428217754,
+        "knn_purity": 0.7277777777777777,
+        "similarity_gap": 0.13385280966758728
+      }
+    },
+    {
+      "model": "lsa",
+      "seed": 0,
+      "labels": "topic",
+      "scores": {
+        "silhouette": 0.2554818410131498,
+        "ari": 1.0,
+        "nmi": 1.0000000000000002,
+        "knn_purity": 0.9833333333333333,
+        "similarity_gap": 0.2053198483701113
+      }
+    },
+    {
+      "model": "lsa",
+      "seed": 0,
+      "labels": "doc_type",
+      "scores": {
+        "silhouette": 0.24669173898154786,
+        "ari": 0.9092911582008018,
+        "nmi": 0.8867959918500231,
+        "knn_purity": 0.9666666666666667,
+        "similarity_gap": 0.21029793260698865
+      }
+    },
+    {
+      "model": "lsa",
+      "seed": 0,
+      "labels": "doc",
+      "scores": {
+        "silhouette": 0.2073284440698434,
+        "ari": 0.5142011525300098,
+        "nmi": 0.681596493373506,
+        "knn_purity": 0.8194444444444444,
+        "similarity_gap": 0.22279030601745534
+      }
+    },
+    {
+      "model": "domain",
+      "seed": 0,
+      "labels": "topic",
+      "scores": {
+        "silhouette": 0.30252665281295776,
+        "ari": 0.4314143559293999,
+        "nmi": 0.5956037270715419,
+        "knn_purity": 0.9666666666666667,
+        "similarity_gap": 0.22681406140327454
+      }
+    },
+    {
+      "model": "domain",
+      "seed": 0,
+      "labels": "doc_type",
+      "scores": {
+        "silhouette": 0.3005508780479431,
+        "ari": 0.392463774533137,
+        "nmi": 0.546803689782896,
+        "knn_purity": 0.9472222222222222,
+        "similarity_gap": 0.22895509004592896
+      }
+    },
+    {
+      "model": "domain",
+      "seed": 0,
+      "labels": "doc",
+      "scores": {
+        "silhouette": 0.18358950316905975,
+        "ari": 0.44002352892754737,
+        "nmi": 0.6253266003963127,
+        "knn_purity": 0.7583333333333333,
+        "similarity_gap": 0.1996699869632721
+      }
+    },
+    {
+      "model": "baseline",
+      "seed": 1,
+      "labels": "topic",
+      "scores": {
+        "silhouette": 0.19052627682685852,
+        "ari": 0.3037996848187708,
+        "nmi": 0.566576820674153,
+        "knn_purity": 0.9555555555555556,
+        "similarity_gap": 0.14423102140426636
+      }
+    },
+    {
+      "model": "baseline",
+      "seed": 1,
+      "labels": "doc_type",
+      "scores": {
+        "silhouette": 0.1886313259601593,
+        "ari": 0.294234592445328,
+        "nmi": 0.5676213579460171,
+        "knn_purity": 0.9388888888888889,
+        "similarity_gap": 0.14856010675430298
+      }
+    },
+    {
+      "model": "baseline",
+      "seed": 1,
+      "labels": "doc",
+      "scores": {
+        "silhouette": 0.11434265971183777,
+        "ari": 0.38465434643442536,
+        "nmi": 0.6017798640269787,
+        "knn_purity": 0.7277777777777777,
+        "similarity_gap": 0.13385280966758728
+      }
+    },
+    {
+      "model": "lsa",
+      "seed": 1,
+      "labels": "topic",
+      "scores": {
+        "silhouette": 0.2549532659860062,
+        "ari": 0.3057581871798851,
+        "nmi": 0.5721372329376109,
+        "knn_purity": 0.9805555555555555,
+        "similarity_gap": 0.20624606238134666
+      }
+    },
+    {
+      "model": "lsa",
+      "seed": 1,
+      "labels": "doc_type",
+      "scores": {
+        "silhouette": 0.2460871034649171,
+        "ari": 0.3061684722529295,
+        "nmi": 0.5771516588611859,
+        "knn_purity": 0.9666666666666667,
+        "similarity_gap": 0.21088412166151302
+      }
+    },
+    {
+      "model": "lsa",
+      "seed": 1,
+      "labels": "doc",
+      "scores": {
+        "silhouette": 0.20752988755518292,
+        "ari": 0.5142011525300098,
+        "nmi": 0.681596493373506,
+        "knn_purity": 0.8194444444444444,
+        "similarity_gap": 0.22337374652769515
+      }
+    },
+    {
+      "model": "domain",
+      "seed": 1,
+      "labels": "topic",
+      "scores": {
+        "silhouette": 0.3014425039291382,
+        "ari": 0.30985072093967625,
+        "nmi": 0.5329879309947853,
+        "knn_purity": 0.9666666666666667,
+        "similarity_gap": 0.22909927368164062
+      }
+    },
+    {
+      "model": "domain",
+      "seed": 1,
+      "labels": "doc_type",
+      "scores": {
+        "silhouette": 0.299978107213974,
+        "ari": 0.30374456888259943,
+        "nmi": 0.5349359739222032,
+        "knn_purity": 0.9555555555555556,
+        "similarity_gap": 0.2298647165298462
+      }
+    },
+    {
+      "model": "domain",
+      "seed": 1,
+      "labels": "doc",
+      "scores": {
+        "silhouette": 0.2066362202167511,
+        "ari": 0.43564015146318374,
+        "nmi": 0.6065906038152172,
+        "knn_purity": 0.7916666666666666,
+        "similarity_gap": 0.20020970702171326
+      }
+    },
+    {
+      "model": "baseline",
+      "seed": 2,
+      "labels": "topic",
+      "scores": {
+        "silhouette": 0.19052627682685852,
+        "ari": 0.32272337318609107,
+        "nmi": 0.5296838489106812,
+        "knn_purity": 0.9555555555555556,
+        "similarity_gap": 0.14423102140426636
+      }
+    },
+    {
+      "model": "baseline",
+      "seed": 2,
+      "labels": "doc_type",
+      "scores": {
+        "silhouette": 0.1886313259601593,
+        "ari": 0.30459027616744516,
+        "nmi": 0.5267450776646809,
+        "knn_purity": 0.9388888888888889,
+        "similarity_gap": 0.14856010675430298
+      }
+    },
+    {
+      "model": "baseline",
+      "seed": 2,
+      "labels": "doc",
+      "scores": {
+        "silhouette": 0.11434265971183777,
+        "ari": 0.31179494394725865,
+        "nmi": 0.524456050946637,
+        "knn_purity": 0.7277777777777777,
+        "similarity_gap": 0.13385280966758728
+      }
+    },
+    {
+      "model": "lsa",
+      "seed": 2,
+      "labels": "topic",
+      "scores": {
+        "silhouette": 0.25709247193306745,
+        "ari": 1.0,
+        "nmi": 1.0,
+        "knn_purity": 0.9833333333333333,
+        "similarity_gap": 0.20660793356964063
+      }
+    },
+    {
+      "model": "lsa",
+      "seed": 2,
+      "labels": "doc_type",
+      "scores": {
+        "silhouette": 0.24840231226878645,
+        "ari": 0.9092911582008018,
+        "nmi": 0.8867959918500231,
+        "knn_purity": 0.9666666666666667,
+        "similarity_gap": 0.21159839001458208
+      }
+    },
+    {
+      "model": "lsa",
+      "seed": 2,
+      "labels": "doc",
+      "scores": {
+        "silhouette": 0.2096823733710876,
+        "ari": 0.4912642981969237,
+        "nmi": 0.6666798314665494,
+        "knn_purity": 0.8222222222222222,
+        "similarity_gap": 0.2245716935346847
+      }
+    },
+    {
+      "model": "domain",
+      "seed": 2,
+      "labels": "topic",
+      "scores": {
+        "silhouette": 0.31718215346336365,
+        "ari": 0.6436417670350926,
+        "nmi": 0.7162255225921648,
+        "knn_purity": 0.9527777777777777,
+        "similarity_gap": 0.22315511107444763
+      }
+    },
+    {
+      "model": "domain",
+      "seed": 2,
+      "labels": "doc_type",
+      "scores": {
+        "silhouette": 0.32312995195388794,
+        "ari": 0.7089938906503751,
+        "nmi": 0.7548902485928175,
+        "knn_purity": 0.95,
+        "similarity_gap": 0.2312341034412384
+      }
+    },
+    {
+      "model": "domain",
+      "seed": 2,
+      "labels": "doc",
+      "scores": {
+        "silhouette": 0.1988479048013687,
+        "ari": 0.423088585735896,
+        "nmi": 0.6085903898195066,
+        "knn_purity": 0.7944444444444444,
+        "similarity_gap": 0.20266714692115784
+      }
+    }
+  ],
+  "summary": {
+    "topic": {
+      "silhouette": {
+        "baseline": [
+          0.19052627682685852,
+          0.0
+        ],
+        "lsa": [
+          0.2558425263107411,
+          0.0009098061822569554
+        ],
+        "domain": [
+          0.3070504367351532,
+          0.007177864473323357
+        ]
+      },
+      "ari": {
+        "baseline": [
+          0.3070658694877997,
+          0.011681469251756133
+        ],
+        "lsa": [
+          0.768586062393295,
+          0.32726872908556337
+        ],
+        "domain": [
+          0.4616356146347229,
+          0.13793503053169304
+        ]
+      },
+      "nmi": {
+        "baseline": [
+          0.5230392789256533,
+          0.038548290882236484
+        ],
+        "lsa": [
+          0.8573790776458704,
+          0.2016964426713704
+        ],
+        "domain": [
+          0.6149390602194973,
+          0.0760455787650136
+        ]
+      },
+      "knn_purity": {
+        "baseline": [
+          0.9555555555555556,
+          0.0
+        ],
+        "lsa": [
+          0.9824074074074073,
+          0.0013094570021973055
+        ],
+        "domain": [
+          0.962037037037037,
+          0.0065472850109865805
+        ]
+      },
+      "similarity_gap": {
+        "baseline": [
+          0.14423102140426636,
+          0.0
+        ],
+        "lsa": [
+          0.2060579481070329,
+          0.0005424211804259879
+        ],
+        "domain": [
+          0.2263561487197876,
+          0.0024482007399260256
+        ]
+      }
+    },
+    "doc_type": {
+      "silhouette": {
+        "baseline": [
+          0.1886313259601593,
+          0.0
+        ],
+        "lsa": [
+          0.24706038490508378,
+          0.000980466832375708
+        ],
+        "domain": [
+          0.30788631240526837,
+          0.010781416932952762
+        ]
+      },
+      "ari": {
+        "baseline": [
+          0.2924373444573984,
+          0.010732060427911121
+        ],
+        "lsa": [
+          0.7082502628848443,
+          0.2843147607474566
+        ],
+        "domain": [
+          0.4684007446887038,
+          0.1739378639545669
+        ]
+      },
+      "nmi": {
+        "baseline": [
+          0.5221763167674551,
+          0.039104585161390294
+        ],
+        "lsa": [
+          0.7835812141870774,
+          0.14596773840826144
+        ],
+        "domain": [
+          0.6122099707659722,
+          0.10100645831000728
+        ]
+      },
+      "knn_purity": {
+        "baseline": [
+          0.9388888888888888,
+          1.1102230246251565e-16
+        ],
+        "lsa": [
+          0.9666666666666667,
+          0.0
+        ],
+        "domain": [
+          0.950925925925926,
+          0.0034644975803462793
+        ]
+      },
+      "similarity_gap": {
+        "baseline": [
+          0.14856010675430298,
+          0.0
+        ],
+        "lsa": [
+          0.21092681476102793,
+          0.0005317671124347586
+        ],
+        "domain": [
+          0.23001797000567117,
+          0.0009366929361284148
+        ]
+      }
+    },
+    "doc": {
+      "silhouette": {
+        "baseline": [
+          0.11434265971183777,
+          0.0
+        ],
+        "lsa": [
+          0.20818023499870464,
+          0.0010653511586281256
+        ],
+        "domain": [
+          0.1963578760623932,
+          0.009572111366178302
+        ]
+      },
+      "ari": {
+        "baseline": [
+          0.34627287487890607,
+          0.029872521986472257
+        ],
+        "lsa": [
+          0.506555534418981,
+          0.010812536825342136
+        ],
+        "domain": [
+          0.432917422042209,
+          0.007176722411193752
+        ]
+      },
+      "nmi": {
+        "baseline": [
+          0.5562577192651305,
+          0.03302455271153467
+        ],
+        "lsa": [
+          0.6766242727378539,
+          0.007031781858050722
+        ],
+        "domain": [
+          0.6135025313436789,
+          0.008400644528321548
+        ]
+      },
+      "knn_purity": {
+        "baseline": [
+          0.7277777777777777,
+          0.0
+        ],
+        "lsa": [
+          0.8203703703703704,
+          0.0013094570021973055
+        ],
+        "domain": [
+          0.7814814814814813,
+          0.01640744920987902
+        ]
+      },
+      "similarity_gap": {
+        "baseline": [
+          0.13385280966758728,
+          0.0
+        ],
+        "lsa": [
+          0.2235785820266117,
+          0.0007415315492714854
+        ],
+        "domain": [
+          0.2008489469687144,
+          0.0013044060553038255
+        ]
+      }
+    }
+  },
+  "retrieval_mrr": {
+    "baseline": [
+      0.7738095238095237,
+      0.7738095238095237,
+      0.7738095238095237
+    ],
+    "lsa": [
+      0.8518518518518517,
+      0.8541666666666666,
+      0.8518518518518517
+    ],
+    "domain": [
+      0.6517094017094017,
+      0.6972222222222221,
+      0.7373737373737373
+    ]
+  },
+  "retrieval_questions": [
+    "macquarie-holding",
+    "kogan-quiz",
+    "overdisclosure",
+    "concentration-policy",
+    "fb-positions-compared",
+    "macquarie-in-facebook"
+  ],
+  "epoch_losses": {
+    "0": [
+      1.9000993371009827,
+      1.211814311834482,
+      0.9514170609987699,
+      0.8628786756442144
+    ],
+    "1": [
+      1.870982867020827,
+      1.2041680010465474,
+      0.9551285115572122,
+      0.86590049129266
+    ],
+    "2": [
+      1.8826519663517292,
+      1.1848335793385139,
+      0.9075068693894607,
+      0.8945241960195395
+    ]
+  },
+  "neighbours": [
+    {
+      "probe": {
+        "filing": "macquarie",
+        "pages": "p. 11",
+        "text": "* * * Pure omissions are not actionable under Rule 10b-5(b). The judgment of the Court of "
+      },
+      "neighbours": {
+        "baseline": [
+          {
+            "filing": "macquarie",
+            "pages": "p. 11",
+            "text": "It is so ordered.\n\n\u2014\u2014\u2014\u2014\u2014\u20142 Moab and the United States spill much ink fighting the question",
+            "cosine": 0.678
+          },
+          {
+            "filing": "fb-petitioners",
+            "pages": "p. 23",
+            "text": "1. The Ninth Circuit\u2019s standard glosses over the actual statements public companies are ma",
+            "cosine": 0.573
+          },
+          {
+            "filing": "fb-petitioners",
+            "pages": "p. 36",
+            "text": "In the decision below, t he Ninth Circuit held that a company\u2019s risk disclosures are mater",
+            "cosine": 0.518
+          }
+        ],
+        "lsa": [
+          {
+            "filing": "macquarie",
+            "pages": "p. 11",
+            "text": "It is so ordered.\n\n\u2014\u2014\u2014\u2014\u2014\u20142 Moab and the United States spill much ink fighting the question",
+            "cosine": 0.545
+          },
+          {
+            "filing": "fb-petitioners",
+            "pages": "p. 23",
+            "text": "1. The Ninth Circuit\u2019s standard glosses over the actual statements public companies are ma",
+            "cosine": 0.337
+          },
+          {
+            "filing": "last-atlantis",
+            "pages": "p. 10",
+            "text": "With no Seventh Circuit case law directly on point , I will3 follow the Second Circuit\u2019s h",
+            "cosine": 0.314
+          }
+        ],
+        "domain": [
+          {
+            "filing": "macquarie",
+            "pages": "p. 11",
+            "text": "It is so ordered.\n\n\u2014\u2014\u2014\u2014\u2014\u20142 Moab and the United States spill much ink fighting the question",
+            "cosine": 0.796
+          },
+          {
+            "filing": "fb-united-states",
+            "pages": "p. 10",
+            "text": "240.10b-5. \u201cSection 10(b) is aptly described as a catchall\u201d antifraud provision. Chiarella",
+            "cosine": 0.661
+          },
+          {
+            "filing": "last-atlantis",
+            "pages": "p. 11",
+            "text": "2009), to support their argument that a specialist may be liable for securities fraud base",
+            "cosine": 0.653
+          }
+        ]
+      }
+    },
+    {
+      "probe": {
+        "filing": "fb-petitioners",
+        "pages": "p. 10",
+        "text": "Petitioners are Facebook, Inc., now known as Meta Platforms, Inc., which operates the soci"
+      },
+      "neighbours": {
+        "baseline": [
+          {
+            "filing": "fb-petitioners",
+            "pages": "p. 48",
+            "text": "See Pet. App. 123a. On appeal, respondents expressly abandoned that theory. See Resp. C.A.",
+            "cosine": 0.799
+          },
+          {
+            "filing": "fb-petitioners",
+            "pages": "p. 35",
+            "text": "The notion that Meta\u2019s statements were misleading is even more implausible in light of pub",
+            "cosine": 0.784
+          },
+          {
+            "filing": "fb-united-states",
+            "pages": "p. 11",
+            "text": "1. Petitioners are Facebook, Inc. (now known as Meta Platforms, Inc., Pet. App. 6a n.1) , ",
+            "cosine": 0.779
+          }
+        ],
+        "lsa": [
+          {
+            "filing": "fb-petitioners",
+            "pages": "p. 35",
+            "text": "The notion that Meta\u2019s statements were misleading is even more implausible in light of pub",
+            "cosine": 0.847
+          },
+          {
+            "filing": "fb-petitioners",
+            "pages": "p. 48",
+            "text": "See Pet. App. 123a. On appeal, respondents expressly abandoned that theory. See Resp. C.A.",
+            "cosine": 0.721
+          },
+          {
+            "filing": "fb-united-states",
+            "pages": "p. 11",
+            "text": "1. Petitioners are Facebook, Inc. (now known as Meta Platforms, Inc., Pet. App. 6a n.1) , ",
+            "cosine": 0.717
+          }
+        ],
+        "domain": [
+          {
+            "filing": "fb-petitioners",
+            "pages": "p. 35",
+            "text": "The notion that Meta\u2019s statements were misleading is even more implausible in light of pub",
+            "cosine": 0.849
+          },
+          {
+            "filing": "fb-united-states",
+            "pages": "p. 11",
+            "text": "1. Petitioners are Facebook, Inc. (now known as Meta Platforms, Inc., Pet. App. 6a n.1) , ",
+            "cosine": 0.844
+          },
+          {
+            "filing": "fb-petitioners",
+            "pages": "p. 10",
+            "text": "Respondents filed suit against petitioners days later, alleging a number of theories of se",
+            "cosine": 0.838
+          }
+        ]
+      }
+    },
+    {
+      "probe": {
+        "filing": "fb-united-states",
+        "pages": "p. 10",
+        "text": "229.105(a). That discussion \u201cmust be organized logically with relevant headings\u201d and with "
+      },
+      "neighbours": {
+        "baseline": [
+          {
+            "filing": "fb-petitioners",
+            "pages": "p. 11",
+            "text": "Item 105 of Regulation S-K requires the disclosure of \u201c risk\u201d\u2014that is, a possibility of fu",
+            "cosine": 0.58
+          },
+          {
+            "filing": "fb-united-states",
+            "pages": "p. 34",
+            "text": "Some courts have held or suggested that risk-factor statements can be unlawfully misleadin",
+            "cosine": 0.575
+          },
+          {
+            "filing": "fb-petitioners",
+            "pages": "pp. 23-24",
+            "text": "2. The Ninth Circuit\u2019s standard would also result in bloated risk disclosures that conflic",
+            "cosine": 0.572
+          }
+        ],
+        "lsa": [
+          {
+            "filing": "fb-united-states",
+            "pages": "p. 36",
+            "text": "Respondents have adequately pleaded th at the relevant risk-factor statements in Facebook\u2019",
+            "cosine": 0.351
+          },
+          {
+            "filing": "fb-petitioners",
+            "pages": "pp. 23-24",
+            "text": "2. The Ninth Circuit\u2019s standard would also result in bloated risk disclosures that conflic",
+            "cosine": 0.256
+          },
+          {
+            "filing": "fb-united-states",
+            "pages": "pp. 36-37",
+            "text": "283, had not recent ly occurred. See, e.g., Berson, 527 F.3d at 98 6 (holding that plainti",
+            "cosine": 0.243
+          }
+        ],
+        "domain": [
+          {
+            "filing": "fb-united-states",
+            "pages": "p. 34",
+            "text": "Some courts have held or suggested that risk-factor statements can be unlawfully misleadin",
+            "cosine": 0.663
+          },
+          {
+            "filing": "fb-petitioners",
+            "pages": "p. 23",
+            "text": "C. In the decision below, the Ninth Circuit held that a company\u2019s risk disclosures are mat",
+            "cosine": 0.629
+          },
+          {
+            "filing": "fb-united-states",
+            "pages": "p. 35",
+            "text": "See, e.g., Matrixx, 563 U.S. at 44 (reports of adverse drug events can be material even ab",
+            "cosine": 0.621
+          }
+        ]
+      }
+    },
+    {
+      "probe": {
+        "filing": "last-atlantis",
+        "pages": "p. 10",
+        "text": "With no Seventh Circuit case law directly on point , I will3 follow the Second Circuit\u2019s h"
+      },
+      "neighbours": {
+        "baseline": [
+          {
+            "filing": "last-atlantis",
+            "pages": "p. 10",
+            "text": "The SEC did not argue that Finnerty III was wrongly decided, but argued that a customer ca",
+            "cosine": 0.801
+          },
+          {
+            "filing": "last-atlantis",
+            "pages": "p. 11",
+            "text": "Plaintiffs\u2019 attempt to deny Knight\u2019s Statement of5 Undisputed Facts 9 is rejected. As an i",
+            "cosine": 0.733
+          },
+          {
+            "filing": "last-atlantis",
+            "pages": "p. 10",
+            "text": "Plaintiffs point to an administrative settlement that the4 SEC reached with Finnerty on Ma",
+            "cosine": 0.661
+          }
+        ],
+        "lsa": [
+          {
+            "filing": "last-atlantis",
+            "pages": "p. 10",
+            "text": "The SEC did not argue that Finnerty III was wrongly decided, but argued that a customer ca",
+            "cosine": 0.747
+          },
+          {
+            "filing": "last-atlantis",
+            "pages": "p. 11",
+            "text": "communications with Knight. Plaintiffs have put forward no5 evidence that they were client",
+            "cosine": 0.717
+          },
+          {
+            "filing": "last-atlantis",
+            "pages": "p. 11",
+            "text": "Plaintiffs\u2019 attempt to deny Knight\u2019s Statement of5 Undisputed Facts 9 is rejected. As an i",
+            "cosine": 0.705
+          }
+        ],
+        "domain": [
+          {
+            "filing": "last-atlantis",
+            "pages": "p. 10",
+            "text": "The SEC did not argue that Finnerty III was wrongly decided, but argued that a customer ca",
+            "cosine": 0.884
+          },
+          {
+            "filing": "last-atlantis",
+            "pages": "p. 11",
+            "text": "communications with Knight. Plaintiffs have put forward no5 evidence that they were client",
+            "cosine": 0.863
+          },
+          {
+            "filing": "last-atlantis",
+            "pages": "pp. 12-13",
+            "text": "However, despite providing these important pieces of evidence, plaintiffs fail to provide ",
+            "cosine": 0.838
+          }
+        ]
+      }
+    },
+    {
+      "probe": {
+        "filing": "sec-v-chiueh",
+        "pages": "p. 10",
+        "text": "28. A mutual fund\u2019s portfolio is managed by a Commission-registered investment adviser. A "
+      },
+      "neighbours": {
+        "baseline": [
+          {
+            "filing": "sec-v-chiueh",
+            "pages": "pp. 10-11",
+            "text": "30. Under the Investment Company Act, mutual funds must disclose to the investing public i",
+            "cosine": 0.76
+          },
+          {
+            "filing": "sec-v-chiueh",
+            "pages": "pp. 11-12",
+            "text": "34. Upright Trust filed its registration statement with the Commission on April 1, 1998.\n\n",
+            "cosine": 0.571
+          },
+          {
+            "filing": "sec-v-chiueh",
+            "pages": "p. 22",
+            "text": "91. Had Upright and Chiueh used Yahoo Finance as the Fund\u2019s sole industry classification s",
+            "cosine": 0.47
+          }
+        ],
+        "lsa": [
+          {
+            "filing": "sec-v-chiueh",
+            "pages": "pp. 10-11",
+            "text": "30. Under the Investment Company Act, mutual funds must disclose to the investing public i",
+            "cosine": 0.641
+          },
+          {
+            "filing": "sec-v-chiueh",
+            "pages": "pp. 34-35",
+            "text": "156. Under Investment Company Act Section 32(a)(1) [15 U.S.C. \u00a7 80a-31(a)(1)], it is unlaw",
+            "cosine": 0.462
+          },
+          {
+            "filing": "sec-v-chiueh",
+            "pages": "pp. 11-12",
+            "text": "34. Upright Trust filed its registration statement with the Commission on April 1, 1998.\n\n",
+            "cosine": 0.44
+          }
+        ],
+        "domain": [
+          {
+            "filing": "sec-v-chiueh",
+            "pages": "pp. 10-11",
+            "text": "30. Under the Investment Company Act, mutual funds must disclose to the investing public i",
+            "cosine": 0.8
+          },
+          {
+            "filing": "sec-v-chiueh",
+            "pages": "pp. 34-35",
+            "text": "156. Under Investment Company Act Section 32(a)(1) [15 U.S.C. \u00a7 80a-31(a)(1)], it is unlaw",
+            "cosine": 0.641
+          },
+          {
+            "filing": "sec-v-chiueh",
+            "pages": "pp. 11-12",
+            "text": "34. Upright Trust filed its registration statement with the Commission on April 1, 1998.\n\n",
+            "cosine": 0.616
+          }
+        ]
+      }
+    }
+  ]
+}

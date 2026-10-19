@@ -5,8 +5,28 @@ description = "Multi-agent legal RAG (Q1) and a domain-specific embedder study (
 readme = "README.md"
 requires-python = ">=3.12,<3.13"
 dependencies = [
+    "deepagents>=0.7.28",
+    "fastembed>=0.9.0",
+    "groq>=0.37.1",
+    "langchain>=1.4.6",
+    "langchain-groq>=1.1.3",
+    "langchain-openrouter>=0.2.9",
     "langchain-text-splitters>=1.1.3",
+    "langgraph>=1.2.16",
+    "numpy>=2.5.4",
+    "openrouter>=0.11.46",
+    "pydantic-settings>=2.16.0",
     "pypdf>=6.21.1",
+    "rank-bm25>=0.2.2",
+]
+
+[project.optional-dependencies]
+research = [
+    "ipykernel>=7.4.0",
+    "matplotlib>=3.11.2",
+    "nbconvert>=7.17.2",
+    "scikit-learn>=1.9.1",
+    "sentence-transformers>=6.1.0",
 ]
 
 [build-system]
@@ -15,6 +35,8 @@ build-backend = "uv_build"
 
 [dependency-groups]
 dev = [
+    "httpx>=0.28.1",
+    "pyright>=1.1.414",
     "pytest>=9.1.1",
     "ruff>=0.17.1",
 ]
@@ -28,3 +50,13 @@ src = ["src", "tests"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "B", "UP", "SIM"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["virallens", "main"]
+
+[tool.pyright]
+include = ["src", "main.py", "eval"]
+pythonVersion = "3.12"
+typeCheckingMode = "basic"
+venvPath = "."
+venv = ".venv"
