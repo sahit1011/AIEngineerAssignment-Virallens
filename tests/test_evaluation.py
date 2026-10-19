@@ -71,7 +71,7 @@ def test_a_failed_question_is_recorded_and_the_rest_still_run():
 
 
 def _row(route, status, cites, tokens):
-    return EndToEndRow("q", "direct", route, status, cites, [], tokens)
+    return EndToEndRow("q", "direct", route, status, cites, [], {"model-a": tokens})
 
 
 def test_report_rates_are_over_answered_questions():

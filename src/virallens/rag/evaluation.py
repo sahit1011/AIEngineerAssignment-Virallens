@@ -61,7 +61,11 @@ class EndToEndRow:
     cites_expected_source: bool
     # The passages the answer cites, as "<key> <pages>", so a result can be checked against them.
     cited: list[str]
-    total_tokens: int
+    tokens_by_model: dict[str, int]
+
+    @property
+    def total_tokens(self) -> int:
+        return sum(self.tokens_by_model.values())
 
 
 @dataclass(frozen=True)
@@ -108,7 +112,7 @@ def evaluate_end_to_end(pipeline: RAGPipeline, questions: list[EvalQuestion]) ->
                 status=result.status,
                 cites_expected_source=any(question.is_hit(c) for c in result.sources),
                 cited=[f"{citation_key(c)} {c.pages}" for c in result.sources],
-                total_tokens=sum(u["total_tokens"] for u in result.token_usage.values()),
+                tokens_by_model={m: u["total_tokens"] for m, u in result.token_usage.items()},
             )
         )
     return EndToEndReport(rows=rows, failures=failures)
