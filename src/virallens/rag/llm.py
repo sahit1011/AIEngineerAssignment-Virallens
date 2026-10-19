@@ -148,10 +148,10 @@ def _retry_invalid_output_once[T](call: Callable[[], T]) -> T:
 
 
 def is_invalid_output(error: groq.BadRequestError) -> bool:
-    return _error_code(error) in INVALID_OUTPUT_CODES
+    return error_code(error) in INVALID_OUTPUT_CODES
 
 
-def _error_code(error: groq.APIStatusError) -> str | None:
+def error_code(error: groq.APIStatusError) -> str | None:
     # Groq's error body is {"error": {"message": ..., "type": ..., "code": ...}}; any other shape is
     # not a recognised invalid-output error and is left to propagate.
     body = error.body
@@ -162,7 +162,7 @@ def _error_code(error: groq.APIStatusError) -> str | None:
 
 def _describe(error: Exception) -> str:
     if isinstance(error, groq.APIStatusError):
-        return f"{type(error).__name__} {error.status_code} {_error_code(error)}"
+        return f"{type(error).__name__} {error.status_code} {error_code(error)}"
     return type(error).__name__
 
 
