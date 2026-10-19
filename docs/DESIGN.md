@@ -45,7 +45,8 @@ On the 15 evaluation questions (`python main.py eval-retrieval`, k = 6):
 
 Each single retriever misses a question the other finds (`us-requested-judgment` for BM25,
 `fb-question-presented` for dense). The index manifest records a fingerprint of the PDFs, the
-chunking parameters and the embedding model; an index built from anything else is refused.
+cleaning, chunking and catalogue code, the text indexed per chunk and the embedding model; an index
+built from different inputs is refused (the pypdf version is not part of the fingerprint).
 
 ## Models and the call policy (`src/virallens/rag/llm.py`)
 
@@ -54,15 +55,23 @@ chunking parameters and the embedding model; an index built from anything else i
 documentation; OpenRouter free models allow 20 requests/min and 50/day.
 Because each Groq model is metered separately, the roles are spread over three models.
 
-**Model per role**, chosen by a comparison on the same prompts and inputs (120 calls per model:
-router and grader on the 15 questions, verifier on 15 genuine answers and 15 deliberately mismatched
-ones, two trials each):
+**Model per role.** The three Groq models were compared on 2026-10-19 on the same strict-schema
+prompts and inputs — 120 calls per model (four roles, 15 questions, two trials) — without the retry
+policy, so invalid output is visible:
 
-| Model | Invalid outputs | Router | Grader keeps an expected passage | Verifier accepts genuine | Verifier rejects mismatched |
-|---|---|---|---|---|---|
-| **qwen/qwen3.8-27b** | **0 / 120** | **30 / 30** | 28 / 30 | 28 / 30 | 30 / 30 |
-| openai/gpt-oss-120b | 1 / 120 | 28 / 30 | 28 / 30 | 27 / 30 | 30 / 30 |
-| openai/gpt-oss-20b | 2 / 120 | 30 / 30 | 28 / 30 | 28 / 30 | 30 / 30 |
+| Model | Invalid outputs | Router correct | Verifier accepts a genuine answer |
+|---|---|---|---|
+| **qwen/qwen3.8-27b** | **0 / 120** | **30 / 30** | 28 / 30 |
+| openai/gpt-oss-120b | 1 / 120 | 28 / 30 | 27 / 30 |
+| openai/gpt-oss-20b | 2 / 120 | 30 / 30 | 28 / 30 |
+
+That run also scored the grader and the verifier's rejection of mismatched answers, but on terms
+that do not measure them: grading was scored on recall alone, with one question having no expected
+passage among its candidates, and the mismatched answers cited passages the verifier was not shown —
+which the production code check rejects before any model sees them. `eval/compare_models.py`
+measures all four roles correctly (grader recall and precision; mismatched answers re-cited to the
+question's own passages); its output, `eval/model_comparison.json`, is to be produced on a day the
+models' Groq token caps are otherwise unused.
 
 Qwen runs the classification roles (router, grader, rewriter, verifier); gpt-oss-120b answers and
 plans research; gpt-oss-20b runs the research analysts (deep agents need tool calling, which was
@@ -111,7 +120,9 @@ the planner and analysts end to end on OpenRouter, with tool calls (17 passages,
 
 ## End-to-end evaluation
 
-`python main.py eval-e2e --out eval/results.json`, Groq free tier, no OpenRouter key:
+`python main.py eval-e2e --out eval/results.json`, Groq free tier, no OpenRouter key, run on
+2026-10-19 with the current models and graph by a revision that predates two output fields
+(per-model token counts and the run block); rerunning the command regenerates it in full.
 
 | | |
 |---|---|
@@ -154,8 +165,10 @@ briefs — the comparison is one-sided.
 - deepagents' built-in summarisation middleware makes its own model calls, outside the call policy.
 - The research path is not deterministic: the same comparison question was verified in the
   evaluation run and returned `NOT VERIFIED`, with its unsupported claim listed, on another.
-- **Groq's daily token cap bounds evaluation.** A full `eval-e2e` run uses about 60k tokens on
-  gpt-oss-120b (answers and research planning), so one account supports roughly three runs a day.
+- **Groq's daily token cap bounds evaluation.** A full `eval-e2e` run used 89,669 tokens across the
+  three models; together with the model comparison and other runs on the same day it exhausted the
+  200k daily cap of both qwen3.8-27b and gpt-oss-120b. Run `eval-e2e` and `compare_models.py` on
+  different days.
 - **The OpenRouter free tier is a thin fallback**: free models allow 50 requests a day (under 10
   credits purchased) and one research question can take 25. Per-minute Groq limits are therefore
   waited out on Groq; the fallback covers Groq's daily cap, a rejected key or an outage, for as long

@@ -90,8 +90,9 @@ behind a research answer is recorded and verified. Model calls are capped per ag
   embeddings, for paraphrase. Embeddings run locally (fastembed), so indexing needs no API.
 - **Rate limiting and fallback.** Each model has a client-side request limiter at its provider's
   limit, and the roles are spread over three Groq models, each with its own token quota. Invalid
-  model output is retried once; a rate limit, rejected key, server error or persistent invalid
-  output moves the call to OpenRouter when a key is set; anything else raises.
+  model output is retried once; the Groq SDK retries rate limits and server errors, waiting out
+  per-minute limits; what still fails, a rejected key or persistent invalid output moves the call to
+  OpenRouter when a key is set; anything else raises.
 
 ### Results
 
@@ -105,8 +106,9 @@ Retrieval on 15 hand-written questions (`eval/questions.json`, k = 6):
 
 Full pipeline on the Groq free tier ([`eval/results.json`](eval/results.json), which records the
 passages each answer cites): **15/15 answered, route accuracy 1.00, all 15 answers verified, 14/15
-cite a passage on an expected page**, 89,669 tokens in total. The miss, a research question, cites
-other argument pages of the two briefs than those listed as expected. The research path is not
+cite a passage on an expected page**, 89,669 tokens in total (run on 2026-10-19 by a revision
+whose output lacked two fields added since; rerunning regenerates it). The miss, a research
+question, cites other argument pages of the two briefs than those listed as expected. The research path is not
 deterministic: the same question was returned `NOT VERIFIED`, with its unsupported claim listed, on
 another run. The OpenRouter fallback was also exercised live, with Groq made to fail, on both a direct
 and a research question. Details and caveats: [`docs/DESIGN.md`](docs/DESIGN.md#end-to-end-evaluation).
@@ -146,7 +148,7 @@ src/virallens/rag/         Q1: models and call policy, retrieval, agents, prompt
 src/virallens/embedder/    Q2: data, train, embed, cluster, plots, study (python -m virallens.embedder)
 notebooks/                 Q2 notebook (executed)
 research/                  Q2 outputs and resources
-eval/                      evaluation questions, end-to-end results, model comparison
+eval/                      evaluation questions, end-to-end results, model-comparison script
 docs/DESIGN.md             design decisions, evidence and limitations
 tests/                     test suite (no API calls)
 ```
@@ -161,6 +163,7 @@ uv run ruff check . && uv run ruff format --check . && uv run pyright
 
 Tests use the real corpus, real BM25 and real embeddings, with scripted agents in place of the LLM
 calls; run them from the repository root after `main.py ingest` has cached the embedding model.
-`eval/compare_models.py` reruns the model comparison behind the per-role model choice.
+`eval/compare_models.py` compares Groq models per role and writes `eval/model_comparison.json`;
+budget its Groq tokens as described in `docs/DESIGN.md`.
 CI ([`.github/workflows/ci.yml`](.github/workflows/ci.yml)) runs lint, type checks and both test
 suites.
